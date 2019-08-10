@@ -12,6 +12,7 @@ const config = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
+// This function checks if the userAuth has a corresponding document that is created, if not, it creates it, and then returns the data.
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
@@ -34,6 +35,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
   }
 
+  console.log('userRef', userRef);
   return userRef;
 };
 
