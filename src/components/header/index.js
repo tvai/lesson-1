@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import { auth } from '../../firebase/firebase.utils';
+import CartIcon from '../cart-icon';
+import CartDropdown from '../cart-dropdown';
 
 import './index.styles.scss';
 
 const Header = (props) => {
-  const { currentUser } = props;
+  const { currentUser, hidden } = props;
 
   return (
     <div className='header'>
@@ -31,14 +33,17 @@ const Header = (props) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => {
   return {
-    currentUser: state.user.currentUser
+    currentUser,
+    hidden
   };
 };
 
