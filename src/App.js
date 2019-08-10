@@ -9,6 +9,7 @@ import ShopPage from './pages/shop';
 import SignInAndSignUpPage from './pages/auth';
 
 import { auth } from './firebase/firebase.utils';
+import { createUserProfileDocument } from './firebase/firebase.utils';
 
 class App extends Component {
   state = {
@@ -20,7 +21,7 @@ class App extends Component {
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
       this.setState({ currentUser: user });
-      console.log('user', user);
+      createUserProfileDocument(user);
     });
   }
 
